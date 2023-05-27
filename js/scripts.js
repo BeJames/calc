@@ -1,9 +1,10 @@
-function saySomething(whatToSay) {
-  window.alert(whatToSay);
+// business logic
+function add(number1, number2) {
+  return number1 + number2;
 }
 
-function add(num1, num2) {
-  return num1 + num2;
-}
+// user interface logic 
+const number1 = parseInt(prompt("Enter a number:"));
+const number2 = parseInt(prompt("Enter another number:"));
 
-saySomething("The sum is " + add(3,5) + ".");
+window.alert(add(number1, number2));
