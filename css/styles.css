@@ -1,7 +1,12 @@
 body{
 background: cadetblue;
 color: #202023;
-font-size: 25px;
+font-size: 20px;
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+p {
+  font-size: 14px;
 }
 
 .dark-mode {
@@ -13,6 +18,10 @@ font-size: 25px;
   display: flow-root;
 }
 
+.output {
+  display: block;
+}
+
 .button {
   border: none;
   color: white;
@@ -22,7 +31,7 @@ font-size: 25px;
   font-size: 16px;
   margin: 4px 2px;
   cursor: pointer;
-  float: right;
+  float: left;
 }
 
 .button0 {
@@ -32,8 +41,17 @@ font-size: 25px;
 
 .button1 {
   background-color: #C7C7C7;
+  float: right;
 }
 
 .button2 {
   background-color: #445760;
+  float: right;
+} 
+
+.button3 {
+  background-color: #C7C7C7;
+  float: left;
+  margin-top: 15px;
+  display: block;
 } 

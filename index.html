@@ -3,6 +3,7 @@
   <head>
     <link rel="stylesheet" href="css/styles.css" type="text/css">
     <script src="js/scripts.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <title>Calculator</title>
   </head>
   <body>
@@ -12,8 +13,57 @@
       <button id="darkMode" class="button button2">Dark Mode</button>
     </div>
     <hr>
-    <h1>Calculator</h1>
-    <h2>Welcome to Calculasaurus.</h2>
-    <p>Lets do some dino maths!</p>
+    <h1>Welcome to Calculasaurus.</h1>
+    <h2>Lets do some dino-maths!</h2>
+    <div id="Fourier"
+    <h1>Fourier Transform Calculator</h1>
+    <p>This calculator performs a Fourier Transform on a waveform. The Fourier Transform, named after Jean-Baptiste Joseph Fourier, decomposes a waveform into the frequencies that make it up. In simple terms, it takes a complex signal and breaks it down into its basic building blocks.</p>
+
+    <p>The Fourier Transform was initially used in heat transfer physics but has found various applications in the digital world. Its early commercial applications include image processing, audio signal processing, and radar technologies.</p>
+
+      <div class="input-field">
+          <label for="waveType">Wave Type:</label>
+          <select id="waveType">
+              <option value="sin">Sine</option>
+              <option value="square">Square</option>
+              <option value="sawtooth">Sawtooth</option>
+          </select>
+          <p>The type of the wave used to generate the signal. Different wave types have different shapes and thus different harmonic content.</p>
+      </div>
+
+      <div class="input-field">
+          <label for="sampleRate">Sample Rate (samples per second):</label>
+          <input type="number" id="sampleRate" value="100">
+          <p>The number of samples taken per second. A higher sample rate means a more accurate representation of the waveform.</p>
+      </div>
+
+      <div class="input-field">
+          <label for="duration">Duration (seconds):</label>
+          <input type="number" id="duration" value="1">
+          <p>The duration of the signal in seconds.</p>
+      </div>
+
+      <div class="input-field">
+          <label for="frequency1">Frequency 1 (Hz):</label>
+          <input type="number" id="frequency1" value="5">
+          <p>The frequency of the first sine wave in the signal. The frequency is the number of cycles of the wave per second.</p>
+      </div>
+
+      <div class="input-field">
+          <label for="frequency2">Frequency 2 (Hz):</label>
+          <input type="number" id="frequency2" value="10">
+          <p>The frequency of the second sine wave in the signal. The signal is the sum of two sine waves.</p>
+      </div>
+    </div>
+    <button id="compute" class="button button3">Compute Fourier Transform</button>
+    <br>
+    <br>
+    <br>
+    <div id="output"></div>
+    <p id="output-explanation">This output represents the fundamental frequency of the input wave, which is the frequency with the most energy. It is calculated by finding the index with the highest amplitude in the Fourier Transform and converting this index to a frequency.</p>
+    <div style="width:50%;">
+      <canvas id="waveChart">The Wave!</canvas>
+      <canvas id="myChart">The Transformed Signal</canvas>
+    </div>
   </body>
 </html>
