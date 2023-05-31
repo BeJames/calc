@@ -1,5 +1,12 @@
 body{
 background: cadetblue;
+color: #202023;
+font-size: 25px;
+}
+
+.dark-mode {
+  background-color: #202023;
+  color: white;
 }
 
 .nav {
@@ -22,5 +29,11 @@ background: cadetblue;
   background-color: #C7C7C7;
   float: left;
 }
-.button1 {background-color: #C7C7C7;} /* Light */
-.button2 {background-color: #445760;} /* Dark */
+
+.button1 {
+  background-color: #C7C7C7;
+}
+
+.button2 {
+  background-color: #445760;
+} 

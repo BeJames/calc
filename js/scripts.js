@@ -16,6 +16,21 @@ function divide(number1, number2) {
 }
 
 // user interface logic 
+function awesome() {
+  alert("I Heart Dinosaurs");
+}
+
+function darkMode() {
+  var element = document.body;
+  element.classList.add("dark-mode");
+}
+
+function lightMode() {
+  var element = document.body;
+  element.classList.remove("dark-mode");
+}
+
+
 // const number1 = parseInt(prompt("Enter a number:"));
 // const number2 = parseInt(prompt("Enter another number:"));
 
