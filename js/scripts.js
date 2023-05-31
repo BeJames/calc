@@ -16,20 +16,25 @@ function divide(number1, number2) {
 }
 
 // user interface logic 
-function awesome() {
-  alert("I Heart Dinosaurs");
-}
 
-function darkMode() {
-  var element = document.body;
-  element.classList.add("dark-mode");
-}
+window.onload = function() {
+  let awesome = document.getElementById("awesome");
+  awesome.onclick = function() {
+    alert("I Heart Dinosaurs");
+  };
 
-function lightMode() {
-  var element = document.body;
-  element.classList.remove("dark-mode");
-}
+  let darkButton = document.getElementById('darkMode');
+  darkButton.onclick = function () {
+    var element = document.body;
+    element.classList.add("dark-mode");
+  };
 
+  let lightButton = document.getElementById('lightMode'); 
+  lightButton.onclick =function () {
+    var element = document.body;
+    element.classList.remove("dark-mode");
+  };
+}
 
 // const number1 = parseInt(prompt("Enter a number:"));
 // const number2 = parseInt(prompt("Enter another number:"));
