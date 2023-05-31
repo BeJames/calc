@@ -1,3 +1,26 @@
 body{
 background: cadetblue;
 }
+
+.nav {
+  display: flow-root;
+}
+
+.button {
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  float: right;
+}
+
+.button0 {
+  background-color: #C7C7C7;
+  float: left;
+}
+.button1 {background-color: #C7C7C7;} /* Light */
+.button2 {background-color: #445760;} /* Dark */
