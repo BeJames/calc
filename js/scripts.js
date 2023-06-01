@@ -185,8 +185,6 @@ function computeFT() {
     document.querySelectorAll('.chart-title')[3].classList.remove('hide');
     document.querySelectorAll('.chart-title')[4].classList.remove('hide');
     document.querySelectorAll('.chart-title')[5].classList.remove('hide');
-    document.querySelectorAll('.chart-title')[6].classList.remove('hide');
-    document.querySelectorAll('.chart-title')[7].classList.remove('hide');
 
   // We only look at the first half of the transform because the second half is a mirror image when the input is a real signal
   let half = transform.slice(0, transform.length / 2);
@@ -210,46 +208,46 @@ function computeFT() {
 }
 
 function fourierTransform(wave) {
-  let N = wave.length;
-  let transform = [];
+  let numberOfPoints = wave.length; // Renamed 'n' to 'numberOfPoints'
+  let transformedWave = []; // Renamed 'transform' to 'transformedWave'
 
-  // For each frequency...
-  for (let k = 0; k < N; k++) {
-    let real = 0;
-    let imag = 0;
+  // Loop through each possible frequency...
+  for (let frequencyIndex = 0; frequencyIndex < numberOfPoints; frequencyIndex++) {
+    let sumRealComponent = 0;
+    let sumImaginaryComponent = 0;
 
-    // For each point in time...
-    for (let n = 0; n < N; n++) {
-      // Compute the angle
-      let theta = (2 * Math.PI * k * n) / N;
+    // Loop through each point in time...
+    for (let timeIndex = 0; timeIndex < numberOfPoints; timeIndex++) {
+
+      // Compute the angle for the specific frequency and point in time
+      let angle = (2 * Math.PI * frequencyIndex * timeIndex) / numberOfPoints;
       
-      // The real part is the sum of the input wave amplitude times the cosine of the angle
-      real += wave[n] * Math.cos(theta);
+      // The real component is the sum of the input wave's amplitude times the cosine of the angle
+      sumRealComponent += wave[timeIndex] * Math.cos(angle); // You used 'inputWave' in the original function, I've renamed it to 'wave'
       
-      // The imaginary part is the sum of the input wave amplitude times the sine of the angle
-      imag -= wave[n] * Math.sin(theta);
+      // The imaginary component is the sum of the input wave's amplitude times the sine of the angle
+      sumImaginaryComponent -= wave[timeIndex] * Math.sin(angle); // You used 'inputWave' in the original function, I've renamed it to 'wave'
     }
 
-    // The real and imaginary parts are each divided by the number of samples to normalize them
-    real /= N;
-    imag /= N;
+    // Normalize the sum of real and imaginary components by dividing them with the number of points
+    sumRealComponent /= numberOfPoints;
+    sumImaginaryComponent /= numberOfPoints;
 
-    // The frequency is simply the current index
-    let freq = k;
+    // The frequency for each Fourier component is simply the current frequency index
+    let frequency = frequencyIndex;
     
-    // The amplitude is the square root of the sum of the squares of the real and imaginary parts
-    let amp = Math.sqrt(real * real + imag * imag);
+    // The amplitude of each Fourier component is the square root of the sum of the squares of the real and imaginary parts
+    let amplitude = Math.sqrt(sumRealComponent * sumRealComponent + sumImaginaryComponent * sumImaginaryComponent);
     
-    // The phase is the arctangent of the imaginary part divided by the real part
-    let phase = Math.atan2(imag, real);
+    // The phase of each Fourier component is the arctangent of the imaginary part divided by the real part
+    let phase = Math.atan2(sumImaginaryComponent, sumRealComponent);
     
-    // Store the real and imaginary parts, along with the frequency, amplitude, and phase, in the transform array
-    transform.push({ re: real, im: imag, freq, amp, phase });
+    // Store the real and imaginary parts, along with the frequency, amplitude, and phase, in the transformed wave array
+    transformedWave.push({ re: sumRealComponent, im: sumImaginaryComponent, freq: frequency, amp: amplitude, phase: phase });
   }
-  
-  return transform;
-}
 
+  return transformedWave;
+}
 
 
 // user interface logic 
@@ -261,21 +259,21 @@ window.onload = function() {
 
   let darkButton = document.getElementById('darkMode');
   darkButton.onclick = function () {
-  let element = document.body;
-  element.classList.add("dark-mode");
-  document.getElementById('dinosaurImage').src = "img/dinosaur-dark.png";
-};
+    let element = document.body;
+    element.classList.add("dark-mode");
+    document.getElementById('dinosaurImage').src = "img/dinosaur-dark.png";
+  };
 
-let lightButton = document.getElementById('lightMode'); 
+  let lightButton = document.getElementById('lightMode'); 
   lightButton.onclick = function () {
-  let element = document.body;
-  element.classList.remove("dark-mode");
-  document.getElementById('dinosaurImage').src = "img/dinosaur.png";
-};
+    let element = document.body;
+    element.classList.remove("dark-mode");
+    document.getElementById('dinosaurImage').src = "img/dinosaur.png";
+  };
   
   let computeButton = document.getElementById('compute');
   computeButton.addEventListener('click', function(event) {
     event.preventDefault(); // Prevent the default form submission behavior
     computeFT(); // Call the computeFT function
-});
+  });
 }
