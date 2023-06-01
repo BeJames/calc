@@ -1,12 +1,17 @@
-body{
-background: cadetblue;
+body {
+background: whitesmoke;
 color: #202023;
 font-size: 20px;
 font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+margin-left: 20px;
 }
 
-p {
-  font-size: 14px;
+container {
+  margin-left: 20px;
+}
+hr {
+  border-top: 3px solid rgba(0,0,0,.1);
+  height: 5px;
 }
 
 .dark-mode {
@@ -20,6 +25,10 @@ p {
 
 .output {
   display: block;
+}
+
+input {
+  width: 100px;
 }
 
 .button {
@@ -55,3 +64,7 @@ p {
   margin-top: 15px;
   display: block;
 } 
+
+.chart-title.hide {
+  display: none;
+}

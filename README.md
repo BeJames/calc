@@ -8,14 +8,18 @@
 
 * HTML CSS 
 * JS
+* Bootstrap CDN
+* Jquery CDN
+* Chart.js CDN
 
 
 ## Description
 Fresh start Calculator build for learning
+-Added Fourier Transform with some charts.
 
 ## Setup/Installation Requirements
 
-* Local bootstrap in repo
+*
 
 ## Known Bugs
 

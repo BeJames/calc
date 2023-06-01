@@ -5,6 +5,7 @@ let myWaveChart = null; // delcare the wave chart
 let myChart = null; // declare the transform chart
 
 function computeFT() {
+  event.preventDefault();
   // Get user inputs
   let waveType = document.getElementById('waveType').value;
   let sampleRate = parseInt(document.getElementById('sampleRate').value);
@@ -29,7 +30,7 @@ function computeFT() {
         break;
     }
   }
-  // The before computation wave 
+  // The before computation wave chart
   if (myWaveChart) {
     myWaveChart.destroy();
   }
@@ -50,7 +51,7 @@ function computeFT() {
     options: {
       scales: {
         x: {
-          title: {
+          title:  {
             display: true,
             text: 'Time'
           }
@@ -64,7 +65,9 @@ function computeFT() {
       }
     }
   });
-  
+
+  document.querySelectorAll('.chart-title')[0].classList.remove('hide');
+
   // Compute Fourier Transform
   let transform = fourierTransform(wave);
 
@@ -105,6 +108,8 @@ function computeFT() {
     }
   });
 
+  document.querySelectorAll('.chart-title')[1].classList.remove('hide');
+  
   // We only look at the first half of the transform because the second half is a mirror image when the input is a real signal
   let half = transform.slice(0, transform.length / 2);
 
@@ -189,5 +194,8 @@ window.onload = function() {
   };
   
   let computeButton = document.getElementById('compute');
-  computeButton.addEventListener('click', computeFT);
+  computeButton.addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent the default form submission behavior
+    computeFT(); // Call the computeFT function
+});
 }
