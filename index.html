@@ -15,6 +15,7 @@
   </div>
   <hr>
   <h1>Welcome to Calculasaurus.</h1>
+  <img id="dinosaurImage" src="img/dinosaur.png" alt="cool dinosaur" width="200" height="200">
   <h2>Lets do some Dinomaths!</h2>
   <hr>
   <div class="container">
@@ -72,12 +73,18 @@
       <div class="col-lg-6">
         <h4>Outputasaurus</h4>
         <p id="output"></p>
-        <p id="output-explanation">This output represents the fundamental frequency of the input wave, which is the frequency with the most energy. It is calculated by finding the index with the highest amplitude in the Fourier Transform and converting this index to a frequency.</p>
         <div id="chartOutput">
           <h4 class="chart-title hide">The Input Wave</h4>
           <canvas id="waveChart"></canvas>
           <h4 class="chart-title hide">The Output Fundamental Frequency</h4>
+          <p id="output-explanation">The output represents the fundamental frequency of the input wave, which is the frequency with the most energy. It is calculated by finding the index with the highest amplitude in the Fourier Transform and converting this index to a frequency.</p>
           <canvas id="myChart"></canvas>
+          <h4 class="chart-title hide">The Phase Spectrum</h4>
+          <p class="chart-title hide"><em>Phase Spectrum:</em> Each component frequency also has a phase associated with it. The phase represents the "offset" or the starting point of each component sine wave. We can plot this phase information as a separate chart.</p>
+          <canvas id="phaseChart"></canvas>
+          <h4 class="chart-title hide">The Power Spectrum</h4>
+          <p class="chart-title hide"><em>Power Spectrum:</em> Is obtained by squaring the amplitude of each of the frequency components obtained by the Fourier Transform. It gives the power present at each frequency.</p>
+          <canvas id="powerChart"></canvas>
         </div>
       </div>
     </div>

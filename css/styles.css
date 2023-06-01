@@ -8,10 +8,16 @@ margin-left: 20px;
 
 .container {
   margin-left: 20px;
+  max-width: 85%;
+  margin: auto
 }
 hr {
   border-top: 3px solid rgba(0,0,0,.1);
   height: 5px;
+}
+
+label {
+  font-weight: bold;
 }
 
 .dark-mode {
@@ -23,8 +29,16 @@ hr {
   border-top: 3px solid rgba(255, 255, 255, 0.8);
 }
 
+.dinomode-img {
+  fill: black; /* default color in light mode */
+}
+
+.dark-mode .dinomode-img {
+  fill: white; /* color in dark mode */
+}
 .nav {
   display: flow-root;
+  margin: 15px;
 }
 
 .output {
@@ -33,6 +47,13 @@ hr {
 
 input {
   width: 100px;
+  float: right;
+  border: none;
+}
+
+select {
+  float: right;
+  border: none;
 }
 
 .button {

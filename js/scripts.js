@@ -1,8 +1,8 @@
-// business logic
-
 // Fourier Transform Logic
-let myWaveChart = null; // delcare the wave chart
+let myWaveChart = null; // declare the wave chart
 let myChart = null; // declare the transform chart
+let myPhaseChart = null; // declare the phase chart
+let myPowerChart = null; // declare the power chart
 
 function computeFT() {
   event.preventDefault();
@@ -109,7 +109,85 @@ function computeFT() {
   });
 
   document.querySelectorAll('.chart-title')[1].classList.remove('hide');
+
+    // Phase spectrum chart
+    let phaseChartCtx = document.getElementById('phaseChart').getContext('2d');
+    if (myPhaseChart) {
+      myPhaseChart.destroy();
+    }
+    myPhaseChart = new Chart(phaseChartCtx, {
+      type: 'line',
+      data: {
+        labels: transform.map((_, i) => i),
+        datasets: [{
+          label: 'Phase',
+          data: transform.map(t => t.phase),
+          fill: false,
+          borderColor: 'rgb(192, 75, 75)',
+          tension: 0.1
+        }]
+      },
+      options: {
+        scales: {
+          x: {
+            title: {
+              display: true,
+              text: 'Frequency'
+            }
+          },
+          y: {
+            title: {
+              display: true,
+              text: 'Phase (radians)'
+            }
+          }
+        }
+      }
+    });
+
+    document.querySelectorAll('.chart-title')[2].classList.remove('hide');
   
+    // Power spectrum chart
+    let powerChartCtx = document.getElementById('powerChart').getContext('2d');
+    if (myPowerChart) {
+      myPowerChart.destroy();
+    }
+    myPowerChart = new Chart(powerChartCtx, {
+      type: 'line',
+      data: {
+        labels: transform.map((_, i) => i),
+        datasets: [{
+          label: 'Power',
+          data: transform.map(t => t.amp * t.amp),
+          fill: false,
+          borderColor: 'rgb(75, 75, 192)',
+          tension: 0.1
+        }]
+      },
+      options: {
+        scales: {
+          x: {
+            title: {
+              display: true,
+              text: 'Frequency'
+            }
+          },
+          y: {
+            title: {
+              display: true,
+              text: 'Power'
+            }
+          }
+        }
+      }
+    });
+
+    document.querySelectorAll('.chart-title')[3].classList.remove('hide');
+    document.querySelectorAll('.chart-title')[4].classList.remove('hide');
+    document.querySelectorAll('.chart-title')[5].classList.remove('hide');
+    document.querySelectorAll('.chart-title')[6].classList.remove('hide');
+    document.querySelectorAll('.chart-title')[7].classList.remove('hide');
+
   // We only look at the first half of the transform because the second half is a mirror image when the input is a real signal
   let half = transform.slice(0, transform.length / 2);
 
@@ -183,15 +261,17 @@ window.onload = function() {
 
   let darkButton = document.getElementById('darkMode');
   darkButton.onclick = function () {
-    let element = document.body;
-    element.classList.add("dark-mode");
-  };
+  let element = document.body;
+  element.classList.add("dark-mode");
+  document.getElementById('dinosaurImage').src = "img/dinosaur-dark.png";
+};
 
-  let lightButton = document.getElementById('lightMode'); 
+let lightButton = document.getElementById('lightMode'); 
   lightButton.onclick = function () {
-    let element = document.body;
-    element.classList.remove("dark-mode");
-  };
+  let element = document.body;
+  element.classList.remove("dark-mode");
+  document.getElementById('dinosaurImage').src = "img/dinosaur.png";
+};
   
   let computeButton = document.getElementById('compute');
   computeButton.addEventListener('click', function(event) {
